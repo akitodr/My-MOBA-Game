@@ -18,12 +18,20 @@ void TileMap::draw(const ofVec2f& camera) {
 	}
 }
 
+int TileMap::getTileWidth() const {
+	return WIDTH - 1;
+}
+
+int TileMap::getTileHeight() const {
+	return HEIGHT;
+}
+
 float TileMap::getMapWidth() const {
-	return TILE * WIDTH;
+	return getTileWidth() * TILE;
 }
 
 float TileMap::getMapHeight() const {
-	return TILE * HEIGHT;
+	return getTileHeight() * TILE;
 }
 
 char TileMap::getTileChar(const ofVec2f& position) {

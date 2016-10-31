@@ -2,18 +2,18 @@
 
 void Hero::init() {
 	life = 100;
-
+	position.set(ofGetWidth() / 2, ofGetHeight() - 200);
 }
 
-void Hero::update(float secs, float mapHeight) {
-	speed.set(0, 300);
-	position.set(500,500/*getDirection() * speed * secs*/);
+void Hero::update(float secs, float mapWidth) {
+	speed = 300;
+	position += (getDirection() * speed * secs);
+	float distance = (position - destination).length();
 
-	if (position.y <= 0) {
-		position.y = 0;
-	}
-	else if (position.y >= mapHeight - 1) {
-		position.y = mapHeight - 1;
+
+	if (distance < 15) {
+		speed = 0;
+		position = destination;
 	}
 }
 
@@ -33,9 +33,14 @@ ofVec2f Hero::getPosition() {
 	return position;
 }
 
-ofVec2f Hero::setDirection(const ofVec2f mousePos) {
-	direction = mousePos - position;
-	return direction;
+ofVec2f Hero::setDestination(const ofVec2f& mousePos) {
+	destination = mousePos;
+	direction = (mousePos - position).normalize();
+	return destination;
+}
+
+ofVec2f Hero::getDestination() const {
+	return destination;
 }
 
 ofVec2f Hero::getDirection() const {

@@ -7,11 +7,15 @@ void Camera::update(const ofVec2f& hero, const ofVec2f& map) {
 	maxX = map.x - ofGetWidth();
 	maxY = map.y - ofGetHeight();
 
-	if (cameraPos.y <= 0) {
-		cameraPos.y = 0;
-	}
-	else if (cameraPos.y >= maxY) {
+	if (cameraPos.y >= maxY) {
 		cameraPos.y = maxY;
+	}
+
+	if (cameraPos.x <= 0) {
+		cameraPos.x = 0;
+	}
+	else if (cameraPos.x >= maxX) {
+		cameraPos.x = maxX - 64;
 	}
 }
 

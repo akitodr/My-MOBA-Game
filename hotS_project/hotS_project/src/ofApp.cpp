@@ -16,14 +16,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	float secs = ofGetLastFrameTime();
-	hero.update(secs, tileMap.getMapHeight());
+	hero.update(secs, tileMap.getMapWidth());
 	camera.update(hero.getPosition(), ofVec2f(tileMap.getMapWidth(), tileMap.getMapHeight()));
-
-	ofVec2f direction = mousePos - hero.getPosition();
-	float distance = direction.length();
-	if (distance < 2) {
-		hero.setDirection(ofVec2f(0, 0));
-	}
 }
 
 //--------------------------------------------------------------
@@ -55,8 +49,8 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
 	mousePos.set(x, y);
-	hero.setDirection(mousePos);
-	hero.getDirection().normalize();
+	mousePos += camera.getPosition();
+	hero.setDestination(mousePos);
 }
 
 //--------------------------------------------------------------
