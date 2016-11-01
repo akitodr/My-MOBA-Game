@@ -1,5 +1,6 @@
 #include "Hero.h"
 
+//---------->INIT, UPDATE, DRAW
 void Hero::init() {
 	life = 100;
 	position.set(ofGetWidth() / 2, ofGetHeight() - 200);
@@ -10,39 +11,51 @@ void Hero::update(float secs, float mapWidth) {
 	position += (getDirection() * speed * secs);
 	float distance = (position - destination).length();
 
-
 	if (distance < 15) {
 		speed = 0;
 		position = destination;
 	}
 }
 
-void Hero::draw(const ofVec2f& camera) {
-	ofDrawCircle(position - camera, 15);
+void Hero::draw(const ofVec2f& camera) const {
+	if (isVisible)
+		ofDrawCircle(position - camera, 15);
 }
 
-void Hero::walk() {
-	isWalking = true;
+//-------------> SETTER
+const bool Hero::setVisibility() {
+	isVisible = !isVisible;
+	return isVisible;
 }
 
-void Hero::stop() {
-	isWalking = false;
-}
-
-ofVec2f Hero::getPosition() {
-	return position;
-}
-
-ofVec2f Hero::setDestination(const ofVec2f& mousePos) {
+const ofVec2f Hero::setDestination(const ofVec2f& mousePos) {
 	destination = mousePos;
 	direction = (mousePos - position).normalize();
 	return destination;
 }
 
-ofVec2f Hero::getDestination() const {
+const void Hero::setMana(int& manaCost) {
+	mana = mana - manaCost;
+}
+
+//------------->GETTER
+const ofVec2f Hero::getPosition() const {
+	return position;
+}
+
+const ofVec2f Hero::getDestination() const {
 	return destination;
 }
 
-ofVec2f Hero::getDirection() const {
+const ofVec2f Hero::getDirection() const {
 	return direction;
+}
+
+//-------------->USELESS
+const void Hero::walk() {
+	isWalking = true;
+}
+
+const void Hero::stop() {
+	isWalking = false;
 }

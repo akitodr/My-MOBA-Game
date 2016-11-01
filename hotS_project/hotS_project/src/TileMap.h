@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ofApp.h"
+#include "ofMain.h"
 
 #define HEIGHT 16
 #define WIDTH 16
