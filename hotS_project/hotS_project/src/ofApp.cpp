@@ -39,7 +39,6 @@ void ofApp::draw(){
 			teleport[i]->draw(camera.getPosition());
 		}
 	} 
-
 	hero.draw(camera.getPosition());
 }
 
