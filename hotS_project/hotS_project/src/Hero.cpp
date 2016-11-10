@@ -6,7 +6,7 @@ void Hero::init() {
 	position.set(ofGetWidth() / 2, ofGetHeight() - 200);
 }
 
-void Hero::update(float secs, float mapWidth) {
+void Hero::update(float secs) {
 	speed = 300;
 	position += (getDirection() * speed * secs);
 	float distance = (position - destination).length();
@@ -17,16 +17,16 @@ void Hero::update(float secs, float mapWidth) {
 	}
 }
 
-void Hero::draw(const ofVec2f& camera) const {
-	if (isVisible)
+void Hero::draw(const ofVec2f& camera) {
+	//if (isVisible)
 		ofDrawCircle(position - camera, 15);
 }
 
 //-------------> SETTER
-const bool Hero::setVisibility() {
-	isVisible = !isVisible;
-	return isVisible;
-}
+//const bool Hero::setVisibility() {
+//	isVisible = !isVisible;
+//	return isVisible;
+//}
 
 const ofVec2f Hero::setDestination(const ofVec2f& mousePos) {
 	destination = mousePos;
@@ -58,4 +58,20 @@ const void Hero::walk() {
 
 const void Hero::stop() {
 	isWalking = false;
+}
+
+void Hero::collidedWith(GameObject* other) {
+	
+}
+
+bool Hero::isAlive() const {
+
+}
+
+bool Hero::isShooting() const {
+
+}
+
+ofRectangle Hero::bounds() {
+	return ofRectangle(position, 15, 15);
 }

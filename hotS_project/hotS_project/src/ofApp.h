@@ -1,8 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ScreenManager.h"
 
 class ofApp : public ofBaseApp{
+	private:
+		ScreenManager manager;
 
 	public:
 		void setup();
