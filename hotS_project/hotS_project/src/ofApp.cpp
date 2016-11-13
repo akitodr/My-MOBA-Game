@@ -1,19 +1,20 @@
 #include "ofApp.h"
 #include "Menu.h"
+#include "Game.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	
+	manager.init(new Game());
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	
+	manager.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	
+	manager.draw();
 }
 
 //--------------------------------------------------------------
@@ -28,7 +29,7 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+	
 }
 
 //--------------------------------------------------------------
@@ -38,12 +39,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	
+	manager.mousePressed(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-	
+	manager.mouseReleased(x, y, button);
 }
 
 //--------------------------------------------------------------

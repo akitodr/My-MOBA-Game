@@ -16,7 +16,7 @@ void Creep::update(float secs) {
 }
 
 void Creep::draw(const ofVec2f& camera) {
-
+	ofDrawCircle(position, 10);
 }
 
 void Creep::collidedWith(GameObject* other) {
@@ -24,13 +24,13 @@ void Creep::collidedWith(GameObject* other) {
 }
 
 bool Creep::isAlive() const {
-
+	return true;
 }
 
 bool Creep::isShooting() const {
-
+	return true;
 }
 
 ofRectangle Creep::bounds(){
-
+	return ofRectangle(position, 5, 5);
 }

@@ -65,11 +65,11 @@ void Hero::collidedWith(GameObject* other) {
 }
 
 bool Hero::isAlive() const {
-
+	return true;
 }
 
 bool Hero::isShooting() const {
-
+	return false;
 }
 
 ofRectangle Hero::bounds() {
