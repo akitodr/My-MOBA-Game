@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "GameObject.h"
+#include "animation.h"
 
 class Hero : public GameObject {
 
@@ -9,6 +10,7 @@ class Hero : public GameObject {
 		ofVec2f position;
 		ofVec2f direction;
 		ofVec2f destination;
+		Animation animation;
 		float speed;
 		int life;
 		int mana;
@@ -26,10 +28,10 @@ class Hero : public GameObject {
 		const void stop();
 		const void setMana(int& manaCost);
 
-		const ofVec2f getPosition() const;
+		const ofVec2f& getPosition() const;
 		const ofVec2f setDestination(const ofVec2f& mousePos);
-		const ofVec2f getDestination() const;
-		const ofVec2f getDirection() const;
+		const ofVec2f& getDestination() const;
+		const ofVec2f& getDirection() const;
 
 		ofRectangle bounds();
 };

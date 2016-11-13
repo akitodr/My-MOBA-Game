@@ -15,16 +15,23 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	manager.draw();
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 'i' || key == 'I') {
+		manager.keyPressed('i');
+		manager.keyPressed('I');
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	if (key == 'i' || key == 'I') {
+		manager.keyReleased('i');
+		manager.keyReleased('I');
+	}
 }
 
 //--------------------------------------------------------------

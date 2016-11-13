@@ -7,10 +7,14 @@ struct MouseInfo {
 	bool clicked;
 };
 
+struct KeyInfo {
+	bool clicked;
+};
+
 class Screen {
 public:
 	virtual void init() = 0;
-	virtual void update(float secs, const MouseInfo& mouse) = 0;
+	virtual void update(float secs, const MouseInfo& mouse, const KeyInfo& key) = 0;
 	virtual void draw() = 0;
 	virtual Screen* nextScreen() = 0;
 

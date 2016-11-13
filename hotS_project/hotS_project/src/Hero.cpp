@@ -3,30 +3,27 @@
 //---------->INIT, UPDATE, DRAW
 void Hero::init() {
 	life = 100;
+	animation.addFrame("img/li_ming_costas.png");
+	animation.addFrame("img/li_ming_costasD.png");
+	animation.addFrame("img/li_ming_costasE.png");
 	position.set(ofGetWidth() / 2, ofGetHeight() - 200);
 }
 
 void Hero::update(float secs) {
 	speed = 300;
-	position += (getDirection() * speed * secs);
+	position += (direction * speed * secs);
 	float distance = (position - destination).length();
 
 	if (distance < 15) {
 		speed = 0;
 		position = destination;
 	}
+	animation.update(secs);
 }
 
 void Hero::draw(const ofVec2f& camera) {
-	//if (isVisible)
-		ofDrawCircle(position - camera, 15);
+	animation.draw(position - camera);
 }
-
-//-------------> SETTER
-//const bool Hero::setVisibility() {
-//	isVisible = !isVisible;
-//	return isVisible;
-//}
 
 const ofVec2f Hero::setDestination(const ofVec2f& mousePos) {
 	destination = mousePos;
@@ -39,15 +36,15 @@ const void Hero::setMana(int& manaCost) {
 }
 
 //------------->GETTER
-const ofVec2f Hero::getPosition() const {
+const ofVec2f& Hero::getPosition() const {
 	return position;
 }
 
-const ofVec2f Hero::getDestination() const {
+const ofVec2f& Hero::getDestination() const {
 	return destination;
 }
 
-const ofVec2f Hero::getDirection() const {
+const ofVec2f& Hero::getDirection() const {
 	return direction;
 }
 
@@ -61,7 +58,7 @@ const void Hero::stop() {
 }
 
 void Hero::collidedWith(GameObject* other) {
-	
+
 }
 
 bool Hero::isAlive() const {

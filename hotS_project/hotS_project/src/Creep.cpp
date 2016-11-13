@@ -1,21 +1,17 @@
 #include "Creep.h"
 
+Creep::Creep(const std::vector<ofVec2f>& a, const std::vector<ofVec2f>& b) : waypoints1(a), waypoints2(b) {}
+
 void Creep::init() {
 	life = 50;
-	position.set(ofGetWidth(), ofGetHeight());
-	for (int i = 0; i < 5; i++) {
-		ofVec2f pos(ofGetWidth(), 200);
-		ofVec2f length(0, 100);
-		wayPoints.push_back(pos);
-		pos += length;
-	}
 }
 
 void Creep::update(float secs) {
-
+	position.set(waypoints1[0]);
 }
 
 void Creep::draw(const ofVec2f& camera) {
+	ofSetColor(255, 0, 0);
 	ofDrawCircle(position, 10);
 }
 
@@ -31,6 +27,6 @@ bool Creep::isShooting() const {
 	return true;
 }
 
-ofRectangle Creep::bounds(){
+ofRectangle Creep::bounds() {
 	return ofRectangle(position, 5, 5);
 }
