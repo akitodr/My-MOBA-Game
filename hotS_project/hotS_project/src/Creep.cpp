@@ -1,18 +1,26 @@
 #include "Creep.h"
 
-Creep::Creep(const std::vector<ofVec2f>& a, const std::vector<ofVec2f>& b) : waypoints1(a), waypoints2(b) {}
+Creep::Creep(const std::vector<ofVec2f>& a) : wayPoints(a) {}
 
 void Creep::init() {
 	life = 50;
+	image.load("img/creepBlue.png");
+	position.set(wayPoints[0]);
 }
 
 void Creep::update(float secs) {
-	position.set(waypoints1[0]);
+	current = 0;
+	direction.set(wayPoints[current+1] - position);
+	position += direction * secs;
+	if (position.x < direction.x && position.y < direction.y) {
+		position.set(wayPoints[current+1]);
+		current += 1;
+	}	
 }
 
 void Creep::draw(const ofVec2f& camera) {
-	ofSetColor(255, 0, 0);
-	ofDrawCircle(position, 10);
+	ofVec2f center(image.getWidth() / 2, image.getHeight() / 2);
+	image.draw(position - camera - center);
 }
 
 void Creep::collidedWith(GameObject* other) {

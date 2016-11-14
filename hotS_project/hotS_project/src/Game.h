@@ -3,14 +3,12 @@
 #include "Camera.h"
 #include "Hero.h"
 #include "GameManager.h"
-#include "Teleport.h"
 #include "Screen.h"
 #include "Creep.h"
 
 class Game : public Screen {
 	private:
 		Hero* hero;
-		Creep* creep;
 		ofImage background;
 		ofImage menu;
 		Camera camera;
@@ -18,7 +16,7 @@ class Game : public Screen {
 		vector <ofVec2f> wayPoints2;
 
 		bool keyIsClicked;
-		int count;
+		float count;
 
 	public:
 		void init();

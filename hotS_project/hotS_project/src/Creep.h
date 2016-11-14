@@ -7,12 +7,13 @@ class Creep : public GameObject {
 	private:
 		ofVec2f position;
 		ofVec2f direction;
+		ofImage image;
 		int life;
+		int current;
 
 	public:
-		Creep(const std::vector<ofVec2f>& a, const std::vector<ofVec2f>& b);
-		const std::vector <ofVec2f>& waypoints1;
-		const std::vector <ofVec2f>& waypoints2;
+		Creep(const std::vector<ofVec2f>& a);
+		const std::vector <ofVec2f>& wayPoints;
 		void init();
 		void update(float secs);
 		void draw(const ofVec2f& camera);

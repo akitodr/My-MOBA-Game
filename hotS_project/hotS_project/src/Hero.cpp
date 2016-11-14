@@ -3,6 +3,7 @@
 //---------->INIT, UPDATE, DRAW
 void Hero::init() {
 	life = 100;
+	isVisible = true;
 	animation.addFrame("img/li_ming_costas.png");
 	animation.addFrame("img/li_ming_costasD.png");
 	animation.addFrame("img/li_ming_costasE.png");
@@ -14,9 +15,23 @@ void Hero::update(float secs) {
 	position += (direction * speed * secs);
 	float distance = (position - destination).length();
 
+
 	if (distance < 15) {
 		speed = 0;
 		position = destination;
+		if (position.x < 0) {
+			position.x = 0;
+		}
+		else if (position.x > 1024) {
+			position.x = 1024;
+		}
+
+		if (position.y < 0) {
+			position.y = 0;
+		}
+		else if (position.y > 2048) {
+			position.y = 2048;
+		}
 	}
 	animation.update(secs);
 }
@@ -25,7 +40,11 @@ void Hero::draw(const ofVec2f& camera) {
 	animation.draw(position - camera);
 }
 
-const ofVec2f Hero::setDestination(const ofVec2f& mousePos) {
+void Hero::teleport() {
+
+}
+
+const ofVec2f& Hero::setDestination(const ofVec2f& mousePos) {
 	destination = mousePos;
 	direction = (mousePos - position).normalize();
 	return destination;
