@@ -29,10 +29,12 @@ void ScreenManager::mouseReleased(int x, int y, int button) {
 	mouse.clicked = false;
 }
 
-void ScreenManager::keyPressed(int key) {
+void ScreenManager::keyPressed(int key, char letter) {
 	this->key.clicked = true;
+	this->key.letter = letter;
 }
 
-void ScreenManager::keyReleased(int key) {
+void ScreenManager::keyReleased(int key, char letter) {
 	this->key.clicked = false;
+	this->key.letter = letter;
 }

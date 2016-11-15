@@ -7,20 +7,21 @@
 #include "Creep.h"
 
 class Game : public Screen {
-	private:
-		Hero* hero;
-		ofImage background;
-		ofImage menu;
-		Camera camera;
-		vector <ofVec2f> wayPoints1;
-		vector <ofVec2f> wayPoints2;
+private:
+	Hero* hero;
+	ofImage background;
+	ofImage menu;
+	Camera camera;
+	vector <ofVec2f> wayPoints1;
+	vector <ofVec2f> wayPoints2;
 
-		bool keyIsClicked;
-		float count;
+	bool keyIsClicked;
+	float count;
+	bool teleport;
 
-	public:
-		void init();
-		void update(float secs, const MouseInfo& mouse, const KeyInfo& key);
-		void draw();
-		Screen* nextScreen();
+public:
+	void init();
+	void update(float secs, const MouseInfo& mouse, const KeyInfo& key);
+	void draw();
+	Screen* nextScreen();
 };

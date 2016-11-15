@@ -34,3 +34,7 @@ void Animation::addFrame(string image) {
 	img->load(image);
 	images.push_back(img);
 }
+
+const ofVec2f& Animation::getFrameSize() const {
+	return ofVec2f(img->getWidth(), img->getHeight());
+}

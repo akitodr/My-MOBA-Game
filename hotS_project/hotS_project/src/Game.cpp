@@ -7,6 +7,7 @@ void Game::init() {
 	background.load("img/nucleo.jpg");
 	menu.load("img/menu.png");
 	hero = new Hero();
+	teleport = false;
 	GAMEMANAGER.add(new Sprite(ofVec2f(background.getWidth() / 2 - 120, 540), "img/torre_vermelha.png"));
 	GAMEMANAGER.add(new Sprite(ofVec2f(background.getWidth() / 2 + 55, 540), "img/torre_vermelha_1.png"));
 
@@ -34,10 +35,8 @@ void Game::update(float secs, const MouseInfo& mouse, const KeyInfo& key) {
 	count += secs;
 	camera.update(hero->getPosition(), ofVec2f(background.getWidth(), background.getHeight()));
 
-	if (count > 5) {
-		cout << "entrei" << endl;
+	if (count > 15) {
 		int random = rand() % 2;
-		cout << random << endl;
 		Creep* creep = new Creep(random == 0 ? wayPoints1 : wayPoints2);
 		GAMEMANAGER.add(creep);
 		count = 0;
@@ -48,6 +47,19 @@ void Game::update(float secs, const MouseInfo& mouse, const KeyInfo& key) {
 		hero->setDestination(mouse.pos + camera.getPosition());
 	}
 
+
+	if (key.letter == 'e' || key.letter == 'E') {
+		teleport = true;
+		hero->setInvisible();
+		if (mouse.clicked == false) {
+			
+			//hero->setDestination(mouse.pos);
+			hero->teleport(secs, mouse.pos);
+		//	hero->setVisible();
+		}
+		teleport = false;
+	}
+
 	GAMEMANAGER.update(secs);
 }
 
@@ -55,7 +67,8 @@ void Game::draw() {
 	background.draw(-camera.getPosition());
 	ofVec2f distance(menu.getWidth() / 2, 384);
 	GAMEMANAGER.draw(camera.getPosition());
-	if (!keyIsClicked) return;
+	if (!keyIsClicked) 
+	if (teleport) return;
 	for (int i = 0; i < wayPoints1.size(); i++) {
 		ofDrawCircle(wayPoints1[i] - camera.getPosition(), 5);
 		ofDrawCircle(wayPoints2[i] - camera.getPosition(), 5);

@@ -9,6 +9,7 @@ struct MouseInfo {
 
 struct KeyInfo {
 	bool clicked;
+	char letter;
 };
 
 class Screen {

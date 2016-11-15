@@ -17,6 +17,6 @@ public:
 
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
-	void keyPressed(int key);
-	void keyReleased(int key);
+	void keyPressed(int key, char letter);
+	void keyReleased(int key, char letter);
 };

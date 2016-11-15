@@ -6,13 +6,14 @@ void Creep::init() {
 	life = 50;
 	image.load("img/creepBlue.png");
 	position.set(wayPoints[0]);
+	current = 0;
 }
 
 void Creep::update(float secs) {
-	current = 0;
 	direction.set(wayPoints[current+1] - position);
 	position += direction * secs;
-	if (position.x < direction.x && position.y < direction.y) {
+	float distance = (wayPoints[current + 1] - position).length();
+	if (current+1 != wayPoints.size()-1 && distance < 10) {
 		position.set(wayPoints[current+1]);
 		current += 1;
 	}	
@@ -36,5 +37,5 @@ bool Creep::isShooting() const {
 }
 
 ofRectangle Creep::bounds() {
-	return ofRectangle(position, 5, 5);
+	return ofRectangle(position, image.getWidth(), image.getHeight());
 }

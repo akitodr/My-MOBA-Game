@@ -21,16 +21,24 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	if (key == 'i' || key == 'I') {
-		manager.keyPressed('i');
-		manager.keyPressed('I');
+		manager.keyPressed('i', 'i');
+		manager.keyPressed('I', 'I');
+	}
+	if (key == 'e' || key == 'E') {
+		manager.keyPressed('e', 'e');
+		manager.keyPressed('E', 'E');
 	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 	if (key == 'i' || key == 'I') {
-		manager.keyReleased('i');
-		manager.keyReleased('I');
+		manager.keyReleased('i', 'i');
+		manager.keyReleased('I', 'I');
+	}
+	if (key == 'e' || key == 'E') {
+		manager.keyReleased('e', 'e');
+		manager.keyReleased('E', 'E');
 	}
 }
 
