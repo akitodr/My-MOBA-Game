@@ -12,7 +12,7 @@ void ScreenManager::update() {
 		delete current;
 		current = next;
 	}
-	current->update(ofGetLastFrameTime(), mouse, key);
+	current->update(ofGetLastFrameTime(), mouse);
 }
 
 void ScreenManager::draw() {
@@ -27,14 +27,4 @@ void ScreenManager::mousePressed(int x, int y, int button) {
 
 void ScreenManager::mouseReleased(int x, int y, int button) {
 	mouse.clicked = false;
-}
-
-void ScreenManager::keyPressed(int key, char letter) {
-	this->key.clicked = true;
-	this->key.letter = letter;
-}
-
-void ScreenManager::keyReleased(int key, char letter) {
-	this->key.clicked = false;
-	this->key.letter = letter;
 }

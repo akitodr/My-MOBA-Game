@@ -15,13 +15,10 @@ private:
 	vector <ofVec2f> wayPoints1;
 	vector <ofVec2f> wayPoints2;
 
-	bool keyIsClicked;
 	float count;
-	bool teleport;
-
 public:
 	void init();
-	void update(float secs, const MouseInfo& mouse, const KeyInfo& key);
+	void update(float secs, const MouseInfo& mouse);
 	void draw();
 	Screen* nextScreen();
 };

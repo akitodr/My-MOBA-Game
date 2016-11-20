@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ScreenManager.h"
+#include "Keyboard.h"
 
 class ofApp : public ofBaseApp{
 	private:
@@ -22,8 +23,5 @@ class ofApp : public ofBaseApp{
 		void mouseExited(int x, int y);
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
-
-		ofVec2f mousePos;
-		
+		void gotMessage(ofMessage msg);		
 };
