@@ -4,37 +4,44 @@
 #include "GameObject.h"
 #include "animation.h"
 
+enum HeroStates {
+	IDLE, WALKING
+};
+
 class Hero : public GameObject {
 
 private:
 	ofVec2f position;
 	ofVec2f direction;
 	ofVec2f destination;
+	ofVec2f mousePos_cpy;
 	Animation animation;
+	HeroStates state;
 	float speed;
+	bool teleporting;
 	int life;
 	int mana;
-	bool isWalking;
-	bool isVisible;
+
+	void walk();
+	void stop();
+
+	
 
 public:
 	void init();
 	void update(float secs);
 	void draw(const ofVec2f& camera);
 	void collidedWith(GameObject* other);
-	void teleport(float secs, const ofVec2f& mouse);
-	void setInvisible();
-	void setVisible();
+	void teleport();
 	bool isAlive() const;
-	bool isShooting() const;
-	const void walk();
-	const void stop();
-	const void setMana(int& manaCost);
+	void getMousePos(const ofVec2f& mouse, const ofVec2f& camera);
+	const void setMana(int manaCost);
 
 	const ofVec2f& getPosition() const;
 	const ofVec2f& setDestination(const ofVec2f& mousePos);
 	const ofVec2f& getDestination() const;
 	const ofVec2f& getDirection() const;
+	
 
 	ofRectangle bounds();
 };
