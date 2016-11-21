@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ScreenManager.h"
 #include "Keyboard.h"
+#include "Mouse.h"
 
 class ofApp : public ofBaseApp{
 	private:

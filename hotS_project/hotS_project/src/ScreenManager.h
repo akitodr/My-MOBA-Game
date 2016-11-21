@@ -6,7 +6,7 @@ class ScreenManager {
 
 private:
 	Screen* current;
-	MouseInfo mouse;
+	//MouseInfo mouse;
 
 public:
 	void init(Screen* first);
@@ -14,6 +14,6 @@ public:
 	void update();
 	void draw();
 
-	void mousePressed(int x, int y, int button);
-	void mouseReleased(int x, int y, int button);
+	//void mousePressed(int x, int y, int button);
+	//void mouseReleased(int x, int y, int button);
 };

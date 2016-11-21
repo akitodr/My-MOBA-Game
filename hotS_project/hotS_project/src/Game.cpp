@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Sprite.h"
 #include "Keyboard.h"
+#include "Mouse.h"
 
 
 void Game::init() {
@@ -30,7 +31,7 @@ void Game::init() {
 	count = 0;
 }
 
-void Game::update(float secs, const MouseInfo& mouse) {
+void Game::update(float secs) {
 	count += secs;
 	camera.update(hero->getPosition(), ofVec2f(background.getWidth(), background.getHeight()));
 
@@ -41,14 +42,8 @@ void Game::update(float secs, const MouseInfo& mouse) {
 		count = 0;
 	}
 
-	if (mouse.clicked == true) {
-		hero->setDestination(mouse.pos + camera.getPosition());
-	}
-
-	if (KEYS.onPressing('e') || KEYS.onPressing('E')) {
-		cout << "FASE" << endl;
-		if (mouse.clicked == true)
-			hero->getMousePos(mouse.pos, camera.getPosition());
+	if (ofGetMousePressed(OF_MOUSE_BUTTON_1)) {
+		hero->setDestination(BUTTON.getPosition() + camera.getPosition());
 	}
 
 	GAMEMANAGER.update(secs);

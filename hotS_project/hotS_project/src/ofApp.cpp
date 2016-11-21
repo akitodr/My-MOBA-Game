@@ -40,12 +40,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	manager.mousePressed(x, y, button);
+	BUTTON.onPress(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-	manager.mouseReleased(x, y, button);
+	BUTTON.onRelease(x, y, button);
 }
 
 //--------------------------------------------------------------

@@ -5,7 +5,7 @@ void Menu::init() {
 
 }
 
-void Menu::update(float secs, const MouseInfo& mouse) {
+void Menu::update(float secs) {
 
 }
 

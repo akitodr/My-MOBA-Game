@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "Keyboard.h"
+#include "Mouse.h"
 
 #define RANGE 100
 
@@ -20,9 +21,10 @@ void Hero::update(float secs) {
 	{
 	case IDLE:
 		speed = 0;
-		//pensei até em tirar isso antes de dar o commit mas achei melhor deixar pra vc ver a que ponto cheguei nessa madrugada...
-		if (teleporting == true)
-			teleport();
+		if (KEYS.onPressing('e') || KEYS.onPressing('E')) {
+			if (ofGetMousePressed(OF_MOUSE_BUTTON_1))
+				teleport(BUTTON.getPosition());
+		}
 		break;
 	case WALKING:
 		speed = 300;
@@ -33,6 +35,11 @@ void Hero::update(float secs) {
 			stop();
 			position = destination;
 		}
+
+		if (KEYS.onPressing('e') || KEYS.onPressing('E')) {
+			if (ofGetMousePressed(OF_MOUSE_BUTTON_1))
+				teleport(BUTTON.getPosition());
+		}
 		break;
 	}
 	animation.update(secs);
@@ -41,11 +48,9 @@ void Hero::update(float secs) {
 void Hero::draw(const ofVec2f& camera) {
 	animation.draw(position - animation.getFrameSize() / 2 - camera);
 }
-//NÃO FUNCIONA ESSA BOSSSSSSSSSSSSSXXXXXXXXXXXXXXXXXXXXXTAAAAAAAAAAAAAAAAAAAAA SOCORR
-//tentei fazer o método recebendo a posição do mouse, mas como vou chamar ele nos estados se o update do hero não recebe mousePos?
-//CADE O SINGLETON DESSE MOUSE MEU DEUS? Ó_Ò
-void Hero::teleport() {
-	ofVec2f pathToMouse = mousePos_cpy - position;
+
+void Hero::teleport(const ofVec2f& mouse) {
+	ofVec2f pathToMouse = mouse - position;
 	if (pathToMouse.length() > RANGE) {
 		pathToMouse.normalize();
 		pathToMouse *= RANGE;
@@ -76,11 +81,6 @@ const ofVec2f& Hero::getDestination() const {
 
 const ofVec2f& Hero::getDirection() const {
 	return direction;
-}
-//CRIEI ESSA COISA LINDA AQUI PQ PRECISO PEGAR A POS DO MOUSE, mas que coisa mais feia e sem sentido credo
-void Hero::getMousePos(const ofVec2f & mouse, const ofVec2f& camera) {
-	teleporting = true;
-	mousePos_cpy = mouse + camera;
 }
 
 //-------------->USELESS

@@ -14,7 +14,6 @@ private:
 	ofVec2f position;
 	ofVec2f direction;
 	ofVec2f destination;
-	ofVec2f mousePos_cpy;
 	Animation animation;
 	HeroStates state;
 	float speed;
@@ -25,16 +24,13 @@ private:
 	void walk();
 	void stop();
 
-	
-
 public:
 	void init();
 	void update(float secs);
 	void draw(const ofVec2f& camera);
 	void collidedWith(GameObject* other);
-	void teleport();
+	void teleport(const ofVec2f& mouse);
 	bool isAlive() const;
-	void getMousePos(const ofVec2f& mouse, const ofVec2f& camera);
 	const void setMana(int manaCost);
 
 	const ofVec2f& getPosition() const;
@@ -42,6 +38,5 @@ public:
 	const ofVec2f& getDestination() const;
 	const ofVec2f& getDirection() const;
 	
-
 	ofRectangle bounds();
 };

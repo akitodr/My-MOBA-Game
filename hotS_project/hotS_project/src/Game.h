@@ -18,7 +18,7 @@ private:
 	float count;
 public:
 	void init();
-	void update(float secs, const MouseInfo& mouse);
+	void update(float secs);
 	void draw();
 	Screen* nextScreen();
 };
