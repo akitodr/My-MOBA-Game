@@ -13,5 +13,6 @@ public:
 	virtual void update(float secs) = 0;
 	virtual void draw() = 0;
 	virtual Screen* nextScreen() = 0;
+    virtual ~Screen() {}
 
 };

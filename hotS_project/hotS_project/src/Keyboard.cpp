@@ -14,7 +14,7 @@ void Keyboard::onRelease(int key) {
 	pressed[key] = false;
 }
 
-bool Keyboard::onPressing(int key) {
+bool Keyboard::isPressed(int key) {
 	if(pressed.find(key) == pressed.end()) return false;
 	return pressed[key];
 }

@@ -16,7 +16,7 @@ private:
 public:
 	Tower(const ofVec2f& position);
 	void init();
-	void update(float secs);
+	void update(float secs, const ofVec2f& camera);
 	void draw(const ofVec2f& camera);
 	void shoot();
 	void collidedWith(GameObject* other);

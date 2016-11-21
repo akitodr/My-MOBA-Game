@@ -42,18 +42,15 @@ void Game::update(float secs) {
 		count = 0;
 	}
 
-	if (ofGetMousePressed(OF_MOUSE_BUTTON_1)) {
-		hero->setDestination(BUTTON.getPosition() + camera.getPosition());
-	}
 
-	GAMEMANAGER.update(secs);
+	GAMEMANAGER.update(secs, camera.getPosition());
 }
 
 void Game::draw() {
 	background.draw(-camera.getPosition());
 
 	GAMEMANAGER.draw(camera.getPosition());
-	if (KEYS.onPressing('i') || KEYS.onPressing('I')) {
+	if (KEYS.isPressed('i') || KEYS.isPressed('I')) {
 		for (int i = 0; i < wayPoints1.size(); i++) {
 			ofDrawCircle(wayPoints1[i] - camera.getPosition(), 3);
 			ofDrawCircle(wayPoints2[i] - camera.getPosition(), 3);

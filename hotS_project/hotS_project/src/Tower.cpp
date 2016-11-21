@@ -12,7 +12,7 @@ void Tower::init() {
 	red[1].load("img/torre_vermelha_1.png");
 }
 
-void Tower::update(float secs) {
+void Tower::update(float secs, const ofVec2f& camera) {
 	switch (state)
 	{
 	case IDLE:

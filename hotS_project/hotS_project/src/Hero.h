@@ -14,9 +14,12 @@ private:
 	ofVec2f position;
 	ofVec2f direction;
 	ofVec2f destination;
-	Animation animation;
+	Animation down;
+    Animation up;
 	HeroStates state;
 	float speed;
+    float coolDown;
+    float orbCoolDown;
 	bool teleporting;
 	int life;
 	int mana;
@@ -26,7 +29,7 @@ private:
 
 public:
 	void init();
-	void update(float secs);
+	void update(float secs, const ofVec2f& camera);
 	void draw(const ofVec2f& camera);
 	void collidedWith(GameObject* other);
 	void teleport(const ofVec2f& mouse);
@@ -37,6 +40,8 @@ public:
 	const ofVec2f& setDestination(const ofVec2f& mousePos);
 	const ofVec2f& getDestination() const;
 	const ofVec2f& getDirection() const;
+    
+    Animation& getAnimation();
 	
 	ofRectangle bounds();
 };

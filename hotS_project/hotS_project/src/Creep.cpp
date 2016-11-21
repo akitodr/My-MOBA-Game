@@ -9,9 +9,11 @@ void Creep::init() {
 	current = 0;
 }
 
-void Creep::update(float secs) {
+void Creep::update(float secs, const ofVec2f& camera) {
+    float speed = 200.0f;
 	direction.set(wayPoints[current+1] - position);
-	position += direction * secs;
+    direction.normalize();
+	position += direction * secs * speed;
 	float distance = (wayPoints[current + 1] - position).length();
 	if (current+1 != wayPoints.size()-1 && distance < 10) {
 		position.set(wayPoints[current+1]);

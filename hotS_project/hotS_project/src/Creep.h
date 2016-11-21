@@ -15,7 +15,7 @@ class Creep : public GameObject {
 		Creep(const std::vector<ofVec2f>& a);
 		const std::vector <ofVec2f>& wayPoints;
 		void init();
-		void update(float secs);
+		void update(float secs, const ofVec2f& camera);
 		void draw(const ofVec2f& camera);
 		void collidedWith(GameObject* other);
 		bool isAlive() const;

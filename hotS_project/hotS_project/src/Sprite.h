@@ -12,7 +12,7 @@ public:
 	void init();
 	bool isAlive() const;
 	void draw(const ofVec2f& camera);
-	void update(float secs);
+	void update(float secs, const ofVec2f& camera);
 	ofRectangle bounds();
 	void collidedWith(GameObject* other);
 

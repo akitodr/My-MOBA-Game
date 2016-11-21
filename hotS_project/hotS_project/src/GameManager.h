@@ -26,7 +26,7 @@ class GameManager {
         static GameManager& instance();
         void clear();
         void add(GameObject* object);
-        void update(float secs);
+        void update(float secs, const ofVec2f& camera);
         void draw(const ofVec2f& camera);
         ~GameManager();
 };

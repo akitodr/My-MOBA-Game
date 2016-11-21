@@ -25,7 +25,7 @@ void Sprite::draw(const ofVec2f& camera) {
 	image.draw(position - camera);
 }
 
-void Sprite::update(float secs) {
+void Sprite::update(float secs, const ofVec2f& camera) {
 
 }
 

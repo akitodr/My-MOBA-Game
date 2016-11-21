@@ -30,11 +30,11 @@ void Animation::draw(const ofVec2f& position) {
 }
 
 void Animation::addFrame(string image) {
-	img = new ofImage();
+	ofImage* img = new ofImage();
 	img->load(image);
 	images.push_back(img);
 }
 
-const ofVec2f& Animation::getFrameSize() const {
-	return ofVec2f(img->getWidth(), img->getHeight());
+ofVec2f Animation::getFrameSize() const {
+	return ofVec2f(images[0]->getWidth(), images[0]->getHeight());
 }

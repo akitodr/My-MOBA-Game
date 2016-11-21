@@ -14,6 +14,6 @@ public:
 	static Keyboard& instance();
 	void onPress(int key);
 	void onRelease(int key);
-	bool onPressing(int key);
+	bool isPressed(int key);
 };
 
