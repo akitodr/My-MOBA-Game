@@ -20,6 +20,7 @@ public:
 	void draw(const ofVec2f& position);
 	void addFrame(string image);
 	void reset();
+	void setFrameTime(float secs);
 	ofVec2f getFrameSize() const;
 };
 

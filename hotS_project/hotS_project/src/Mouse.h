@@ -4,7 +4,7 @@
 #include <vector>
 #include "ofMain.h"
 
-#define BUTTON Mouse::instance()
+#define MOUSE Mouse::instance()
 
 using namespace std;
 

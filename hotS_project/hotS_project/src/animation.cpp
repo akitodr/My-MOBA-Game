@@ -3,7 +3,6 @@
 Animation::Animation() {
 	frame = 0;
 	repeat = true;
-	frameTime = 0.5;
 	time = 0;
 }
 
@@ -33,6 +32,15 @@ void Animation::addFrame(string image) {
 	ofImage* img = new ofImage();
 	img->load(image);
 	images.push_back(img);
+}
+
+void Animation::reset() {
+	frame = 0;
+	time = 0;
+}
+
+void Animation::setFrameTime(float secs) {
+	frameTime = secs;
 }
 
 ofVec2f Animation::getFrameSize() const {

@@ -1,11 +1,3 @@
-//
-//  GameManager.cpp
-//  colors
-//
-//  Created by ViniGodoy on 05/11/16.
-//
-//
-
 #include "GameManager.h"
 
 GameManager::GameManager() {
@@ -31,7 +23,7 @@ void GameManager::update(float secs, const ofVec2f& camera)
     
     std::swap(toDelete, dead);
     
-    //Para cada objeto object em objects
+ 
     for (int i = 0; i < objects.size(); i++) {
         objects[i]->update(secs, camera);
         if (!objects[i]->isAlive()) {

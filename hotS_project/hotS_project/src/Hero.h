@@ -33,6 +33,7 @@ public:
 	void draw(const ofVec2f& camera);
 	void collidedWith(GameObject* other);
 	void teleport(const ofVec2f& mouse);
+	void shootOrb(const ofVec2f& camera);
 	bool isAlive() const;
 	const void setMana(int manaCost);
 
@@ -40,6 +41,7 @@ public:
 	const ofVec2f& setDestination(const ofVec2f& mousePos);
 	const ofVec2f& getDestination() const;
 	const ofVec2f& getDirection() const;
+	ofVec2f getHandPosition() const;
     
     Animation& getAnimation();
 	

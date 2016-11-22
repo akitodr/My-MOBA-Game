@@ -14,7 +14,10 @@ Orb::Orb(const ofVec2f& pos, const ofVec2f direction)
 : Skill(pos, direction, 50), initialPos(pos) {}
 
 void Orb::init(){
-    animation.addFrame("img/orbe.png");
+    animation.addFrame("img/orb.png");
+	animation.addFrame("img/orb2.png");
+	animation.addFrame("img/orb3.png");
+	animation.setFrameTime(0.25f);
 }
 
 bool Orb::isAlive() const{

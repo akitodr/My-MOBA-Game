@@ -4,7 +4,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	manager.init(new Game());
+	manager.init(new Menu());
 }
 
 //--------------------------------------------------------------
@@ -40,12 +40,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	BUTTON.onPress(x, y, button);
+	MOUSE.onPress(x, y, button);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-	BUTTON.onRelease(x, y, button);
+	MOUSE.onRelease(x, y, button);
 }
 
 //--------------------------------------------------------------

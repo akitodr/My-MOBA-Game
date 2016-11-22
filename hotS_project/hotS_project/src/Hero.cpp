@@ -11,47 +11,48 @@ void Hero::init() {
 	state = IDLE;
 	life = 100;
 	teleporting = false;
-    
+
 	down.addFrame("img/li_ming.png");
 	down.addFrame("img/li_mingD.png");
 	down.addFrame("img/li_mingE.png");
-    up.addFrame("img/li_ming_costas.png");
-    up.addFrame("img/li_ming_costasD.png");
-    up.addFrame("img/li_ming_costasE.png");
-    
+	up.addFrame("img/li_ming_costas.png");
+	up.addFrame("img/li_ming_costasD.png");
+	up.addFrame("img/li_ming_costasE.png");
+	up.setFrameTime(0.5f);
+	down.setFrameTime(0.5f);
+
 	position.set(ofGetWidth() / 2, 1800);
-    coolDown = 1000;
+	coolDown = 1000;
+	orbCoolDown = 1000;
 }
 
 void Hero::update(float secs, const ofVec2f& camera) {
-    coolDown += secs;
-    
+	coolDown += secs;
+	orbCoolDown += secs;
+
 	switch (state)
 	{
 	case IDLE:
 		speed = 0;
-            
-            if (KEYS.isPressed('w') || KEYS.isPressed('W')) {
-                if (ofGetMousePressed(OF_MOUSE_BUTTON_1)){
-                    ofVec2f direction = (BUTTON.getPosition() + camera - position).normalize();
-                    Orb* orb = new Orb(position, direction);
-                    GAMEMANAGER.add(orb);
-                }
-            }
-            
-            
-        if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && !KEYS.isPressed('e') && !KEYS.isPressed('E')) {
-                state = WALKING;
-                setDestination(BUTTON.getPosition() + camera);
-            }
-            
+		//walking
+		if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && !KEYS.isPressed('e') && !KEYS.isPressed('E')) {
+			state = WALKING;
+			setDestination(MOUSE.getPosition() + camera);
+		}
+
+		//orbe
+		if (KEYS.isPressed('w') || KEYS.isPressed('W')) {
+			state = IDLE;
+			shootOrb(camera);
+		}
+		//teleporte
 		if (KEYS.isPressed('e') || KEYS.isPressed('E')) {
 			if (ofGetMousePressed(OF_MOUSE_BUTTON_1))
-				teleport(BUTTON.getPosition() + camera);
+				teleport(MOUSE.getPosition() + camera);
 		}
-            
-        
-            
+
+
+
 		break;
 	case WALKING:
 		speed = 300;
@@ -62,23 +63,20 @@ void Hero::update(float secs, const ofVec2f& camera) {
 			stop();
 			position = destination;
 		}
-            
-        if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && !KEYS.isPressed('e') && !KEYS.isPressed('E')) {
-            setDestination(BUTTON.getPosition() + camera);
-        }
+
+		if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && !KEYS.isPressed('e') && !KEYS.isPressed('E')
+			&& !KEYS.isPressed('w') && !KEYS.isPressed('W')) {
+			setDestination(MOUSE.getPosition() + camera);
+		}
 
 		if (KEYS.isPressed('e') || KEYS.isPressed('E')) {
 			if (ofGetMousePressed(OF_MOUSE_BUTTON_1))
-				teleport(BUTTON.getPosition() + camera);
+				teleport(MOUSE.getPosition() + camera);
 		}
-            
-        if (KEYS.isPressed('w') || KEYS.isPressed('W')) {
-            if (ofGetMousePressed(OF_MOUSE_BUTTON_1)){
-                ofVec2f direction = (BUTTON.getPosition() + camera - position).normalize();
-                Orb* orb = new Orb(position, direction);
-                GAMEMANAGER.add(orb);
-            }
-        }
+
+		if (KEYS.isPressed('w') || KEYS.isPressed('W')) {
+			shootOrb(camera);
+		}
 
 		break;
 	}
@@ -90,16 +88,27 @@ void Hero::draw(const ofVec2f& camera) {
 }
 
 void Hero::teleport(const ofVec2f& mouse) {
-    if(coolDown < 5) return;
-    coolDown = 0;
+	if (coolDown < 5) return;
+	coolDown = 0;
 	ofVec2f pathToMouse = mouse - position;
 	if (pathToMouse.length() > RANGE) {
 		pathToMouse.normalize();
 		pathToMouse *= RANGE;
 	}
-    state = IDLE;
+	state = IDLE;
 	destination = position + pathToMouse;
 	position = destination;
+}
+
+void Hero::shootOrb(const ofVec2f & camera) {
+	if (ofGetMousePressed(OF_MOUSE_BUTTON_1)) {
+		if (orbCoolDown < 8) return;
+
+		orbCoolDown = 0;
+		ofVec2f direction = (MOUSE.getPosition() + camera - position).normalize();
+		Orb* orb = new Orb(getHandPosition(), direction);
+		GAMEMANAGER.add(orb);
+	}
 }
 
 const ofVec2f& Hero::setDestination(const ofVec2f& mousePos) {
@@ -125,6 +134,10 @@ const ofVec2f& Hero::getDirection() const {
 	return direction;
 }
 
+ofVec2f Hero::getHandPosition() const {
+	return position - ofVec2f(24, 37);
+}
+
 //-------------->USELESS
 void Hero::walk() {
 	state = WALKING;
@@ -144,7 +157,7 @@ bool Hero::isAlive() const {
 }
 
 Animation& Hero::getAnimation() {
-    return (direction.y < 0 ? up : down);
+	return (direction.y < 0 ? up : down);
 }
 
 ofRectangle Hero::bounds() {

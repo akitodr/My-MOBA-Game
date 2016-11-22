@@ -14,7 +14,6 @@ Skill::Skill(const ofVec2f& pos, const ofVec2f direction, int dano)
 
 void Skill::draw(const ofVec2f& camera){
     animation.draw(position - camera);
-    cout << "desenhei" << endl;
 }
 
 void Skill::update(float secs, const ofVec2f& camera){

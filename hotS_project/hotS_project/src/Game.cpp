@@ -13,7 +13,7 @@ void Game::init() {
 
 	GAMEMANAGER.add(new Sprite(ofVec2f(background.getWidth() / 2 - 115, 1380), "img/torre_azul.png"));
 	GAMEMANAGER.add(new Sprite(ofVec2f(background.getWidth() / 2 + 50, 1380), "img/torre_azul_1.png"));
-	GAMEMANAGER.add(hero);
+	
 	wayPoints1.push_back(ofVec2f(background.getWidth() / 2 + 35, 1500));
 	wayPoints1.push_back(ofVec2f(background.getWidth() / 2 + 85, 1300));
 	wayPoints1.push_back(ofVec2f(background.getWidth() / 2 + 35, 1100));
@@ -27,6 +27,8 @@ void Game::init() {
 	wayPoints2.push_back(ofVec2f(background.getWidth() / 2 - 70, 900));
 	wayPoints2.push_back(ofVec2f(background.getWidth() / 2 - 20, 700));
 	wayPoints2.push_back(ofVec2f(background.getWidth() / 2 - 70, 600));
+
+	GAMEMANAGER.add(hero);
 
 	count = 0;
 }

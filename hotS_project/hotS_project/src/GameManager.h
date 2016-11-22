@@ -1,13 +1,4 @@
-//
-//  GameManager.hpp
-//  colors
-//
-//  Created by ViniGodoy on 05/11/16.
-//
-//
-
-#ifndef GameManager_hpp
-#define GameManager_hpp
+#pragma once
 
 #include "ofMain.h"
 #include <stdio.h>
@@ -30,5 +21,3 @@ class GameManager {
         void draw(const ofVec2f& camera);
         ~GameManager();
 };
-
-#endif /* GameManager_hpp */
