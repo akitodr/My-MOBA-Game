@@ -1,30 +1,22 @@
 #include "Buttons.h"
 
-Button::Button(ofVec2f pos, char* notClicked, char* clicked, char* sound) { //construtor
-	//da load nas parada
-	//cria um botão com todos esses parâmetros
+Button::Button(const ofVec2f& pos, string clicked, string notClicked) {
 	position = pos;
 	colorNotClicked.load(notClicked);
 	colorClicked.load(clicked);
-	note.load(sound);
+	//this->sound.load(sound);
 	IsClicked = false;
+	ClickFinished = false;
 }
 
-bool Button::Check(ofVec2f posMouse) {//checa colisão do mouse com o botão
+const bool Button::Check(const ofVec2f& posMouse) const {//checa colisão do mouse com o botão
 	return (posMouse.x > position.x && posMouse.x < (position.x + SIZEX)
 		&& posMouse.y > position.y && posMouse.y < (position.y + SIZEY));
 
 }
-
-void Button::Play() {
-	if (IsClicked) {
-		//se tiver tocando não vai tocar de novo
-		return;
-	}
-	//se não tiver tocando aí toca
-	note.play();
+bool Button::SetClick() {
 	IsClicked = true;
-	clickTime = 0;
+	return IsClicked;
 }
 
 void Button::Update(float secs) {
@@ -33,16 +25,25 @@ void Button::Update(float secs) {
 		//a cada 4 segundos o botão "desliga"
 		if (clickTime > 0.6) {
 			IsClicked = false;
-			note.stop();
+			ClickFinished = true;
+			//sound.stop();
 		}
 	}
 }
 
-void Button::Draw() {
+void Button::Draw() const {
 	if (!IsClicked) {
 		colorClicked.draw(position.x, position.y);
 	}
 	else {
 		colorNotClicked.draw(position.x, position.y);
 	}
+}
+
+bool Button::isClickFinished() const {
+	return ClickFinished;
+}
+
+Button::~Button() {
+
 }
