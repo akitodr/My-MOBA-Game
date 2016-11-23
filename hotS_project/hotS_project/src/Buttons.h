@@ -4,7 +4,6 @@
 
 #include <string>
 
-//funcionaa
 class Button {
 	
 private:

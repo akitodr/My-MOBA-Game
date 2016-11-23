@@ -1,11 +1,3 @@
-//
-//  Sprite.cpp
-//  colors
-//
-//  Created by BEPID on 11/11/16.
-//
-//
-
 #include "Sprite.h"
 
 Sprite::Sprite(const ofVec2f& pos, std::string img)
