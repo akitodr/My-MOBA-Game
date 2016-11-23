@@ -14,12 +14,16 @@
 class Orb : public Skill{
 private:
     ofVec2f initialPos;
+	int demage;
+	int increase;
+	bool alive;
 public:
     Orb(const ofVec2f& pos, const ofVec2f direction);
     void init();
     bool isAlive() const;
     void update(float secs, const ofVec2f& camera);
     void collidedWith(GameObject* other);
+	int getDemage() const;
 };
 
 

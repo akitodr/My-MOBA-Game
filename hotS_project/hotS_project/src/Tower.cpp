@@ -5,6 +5,8 @@
 Tower::Tower(const ofVec2f & position) : position(position) {}
 
 void Tower::init() {
+	demage = 100;
+	hp = 3350;
 	state = IDLE;
 	blue[0].load("img/torre_azul.png");
 	blue[1].load("img/torre_azul_1.png");

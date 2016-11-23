@@ -12,7 +12,8 @@ private:
 	ofImage red[2];
 	ofVec2f position;
 	TowerState state;
-	int life;
+	int hp;
+	int demage;
 public:
 	Tower(const ofVec2f& position);
 	void init();

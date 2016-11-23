@@ -9,7 +9,8 @@
 //---------->INIT, UPDATE, DRAW
 void Hero::init() {
 	state = IDLE;
-	life = 100;
+	life = 1232;
+	mana = 500;
 	teleporting = false;
 
 	down.addFrame("img/li_ming.png");
@@ -104,6 +105,7 @@ void Hero::shootOrb(const ofVec2f & camera) {
 	if (ofGetMousePressed(OF_MOUSE_BUTTON_1)) {
 		if (orbCoolDown < 8) return;
 
+		mana = mana;
 		orbCoolDown = 0;
 		ofVec2f direction = (MOUSE.getPosition() + camera - position).normalize();
 		Orb* orb = new Orb(getHandPosition(), direction);

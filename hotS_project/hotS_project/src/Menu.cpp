@@ -21,7 +21,7 @@ void Menu::update(float secs) {
 	for (int i = 0; i < buttons.size(); i++) {
 		buttons[i]->Update(secs);
 		if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && buttons[i]->Check(MOUSE.getPosition())) {
-			buttons[i]->l();
+			buttons[i]->SetClick();
 		}
 
 		if (buttons[i]->isClickFinished()) {

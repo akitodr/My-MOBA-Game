@@ -10,8 +10,8 @@ Button::Button(const ofVec2f& pos, string clicked, string notClicked) {
 }
 
 const bool Button::Check(const ofVec2f& posMouse) const {//checa colisão do mouse com o botão
-	return (posMouse.x > position.x && posMouse.x < (position.x + SIZEX)
-		&& posMouse.y > position.y && posMouse.y < (position.y + SIZEY));
+	return (posMouse.x > position.x && posMouse.x < (position.x + colorClicked.getWidth())
+		&& posMouse.y > position.y && posMouse.y < (position.y + colorClicked.getHeight()));
 
 }
 bool Button::SetClick() {

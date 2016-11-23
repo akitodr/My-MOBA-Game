@@ -10,6 +10,8 @@ class Creep : public GameObject {
 		ofImage image;
 		int life;
 		int current;
+		bool alive;
+		int demage;
 
 	public:
 		Creep(const std::vector<ofVec2f>& a);

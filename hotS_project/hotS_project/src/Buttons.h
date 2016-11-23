@@ -4,8 +4,6 @@
 
 #include <string>
 
-#define SIZEX 156
-#define SIZEY 120
 //funcionaa
 class Button {
 	
