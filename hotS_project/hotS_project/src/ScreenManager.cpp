@@ -8,7 +8,7 @@ void ScreenManager::init(Screen* first) {
 
 void ScreenManager::update() {
 	Screen* next = current->nextScreen();
-	if (next != current) {
+	if (next != current && next != nullptr) {
 		next->init();
 		delete current;
 		current = next;

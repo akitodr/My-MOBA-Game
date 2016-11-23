@@ -36,7 +36,8 @@ void Hero::update(float secs, const ofVec2f& camera) {
 	case IDLE:
 		speed = 0;
 		//walking
-		if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && !KEYS.isPressed('e') && !KEYS.isPressed('E')) {
+		if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && !KEYS.isPressed('e') && !KEYS.isPressed('E')
+			&& !KEYS.isPressed('w') && !KEYS.isPressed('W')) {
 			state = WALKING;
 			setDestination(MOUSE.getPosition() + camera);
 		}
@@ -52,11 +53,15 @@ void Hero::update(float secs, const ofVec2f& camera) {
 				teleport(MOUSE.getPosition() + camera);
 		}
 
+		if (KEYS.isPressed('z') || KEYS.isPressed('Z')) {
+			speed = 250;
+		}
+
 
 
 		break;
 	case WALKING:
-		speed = 300;
+		speed = 200;
 		position += (direction * speed * secs);
 		float distance = (position - destination).length();
 
@@ -77,7 +82,13 @@ void Hero::update(float secs, const ofVec2f& camera) {
 
 		if (KEYS.isPressed('w') || KEYS.isPressed('W')) {
 			shootOrb(camera);
+			cout << mana << endl;
 		}
+
+		if (KEYS.isPressed('z') || KEYS.isPressed('Z')) {
+			speed = 250;
+		}
+
 
 		break;
 	}
@@ -86,6 +97,11 @@ void Hero::update(float secs, const ofVec2f& camera) {
 
 void Hero::draw(const ofVec2f& camera) {
 	getAnimation().draw(position - getAnimation().getFrameSize() / 2 - camera);
+	ofSetColor(ofColor::green);
+	ofDrawBitmapString(life, position + ofVec2f(-19, -63) - camera);
+	ofSetColor(ofColor::blue);
+	ofDrawBitmapString(mana, position + ofVec2f(-15, -50) - camera);
+	ofSetColor(ofColor::white);
 }
 
 void Hero::teleport(const ofVec2f& mouse) {
@@ -97,6 +113,7 @@ void Hero::teleport(const ofVec2f& mouse) {
 		pathToMouse *= RANGE;
 	}
 	state = IDLE;
+	mana = mana - 30;
 	destination = position + pathToMouse;
 	position = destination;
 }
@@ -104,8 +121,7 @@ void Hero::teleport(const ofVec2f& mouse) {
 void Hero::shootOrb(const ofVec2f & camera) {
 	if (ofGetMousePressed(OF_MOUSE_BUTTON_1)) {
 		if (orbCoolDown < 8) return;
-
-		mana = mana;
+		mana = mana - 40;
 		orbCoolDown = 0;
 		ofVec2f direction = (MOUSE.getPosition() + camera - position).normalize();
 		Orb* orb = new Orb(getHandPosition(), direction);
@@ -138,6 +154,10 @@ const ofVec2f& Hero::getDirection() const {
 
 ofVec2f Hero::getHandPosition() const {
 	return position - ofVec2f(24, 37);
+}
+
+const auto & Hero::getState() const {
+	return state;
 }
 
 //-------------->USELESS

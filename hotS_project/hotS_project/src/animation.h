@@ -21,6 +21,7 @@ public:
 	void addFrame(string image);
 	void reset();
 	void setFrameTime(float secs);
+	void setFrame(int num);
 	ofVec2f getFrameSize() const;
 };
 

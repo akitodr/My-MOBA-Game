@@ -1,15 +1,7 @@
-//
-//  GameObject.h
-//  colors
-//
-//  Created by ViniGodoy on 05/11/16.
-//
-//
-
-#ifndef GameObject_h
-#define GameObject_h
+#pragma once
 
 #include "ofMain.h"
+
 
 class GameObject {
     public:
@@ -22,5 +14,3 @@ class GameObject {
     
         virtual ~GameObject() {}
 };
-
-#endif /* GameObject_h */

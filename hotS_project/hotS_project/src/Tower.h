@@ -1,21 +1,24 @@
 #pragma once
 
 #include "GameObject.h"
+#include "animation.h"
+#include <string>
 
 enum TowerState {
-	IDLE, ATTACKING
+	ATTACKING, NO_BOMBS, DEAD
 };
 
 class Tower : public GameObject {
 private:
-	ofImage blue[2];
-	ofImage red[2];
 	ofVec2f position;
+	Animation animation;
+	ofImage image;
 	TowerState state;
+	string image1, image2, broken;
 	int hp;
 	int demage;
 public:
-	Tower(const ofVec2f& position);
+	Tower(const ofVec2f& position, const string& frame1, const string& frame2, const string& img);
 	void init();
 	void update(float secs, const ofVec2f& camera);
 	void draw(const ofVec2f& camera);

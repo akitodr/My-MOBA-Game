@@ -28,12 +28,13 @@ void Creep::draw(const ofVec2f& camera) {
 	if (!alive) return;
 	ofVec2f center(image.getWidth() / 2, image.getHeight() / 2);
 	image.draw(position - camera - center);
+	
 }
 
 void Creep::collidedWith(GameObject* other) {
 	if (!alive) return;
 	Orb* orb = dynamic_cast<Orb*>(other);
-	if (orb != nullptr) {
+	if (orb != nullptr && orb->isAlive()) {
 		life -= orb->getDemage();
 	}
 }

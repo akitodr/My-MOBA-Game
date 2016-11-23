@@ -42,7 +42,8 @@ public:
 	const ofVec2f& getDestination() const;
 	const ofVec2f& getDirection() const;
 	ofVec2f getHandPosition() const;
-    
+	const auto& getState() const;
+
     Animation& getAnimation();
 	
 	ofRectangle bounds();

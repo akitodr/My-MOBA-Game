@@ -4,14 +4,16 @@
 #include "Hero.h"
 #include "GameManager.h"
 #include "Screen.h"
-#include "Creep.h"
+#include "Buttons.h"
 
 class Game : public Screen {
 private:
 	Hero* hero;
 	ofImage background;
-	ofImage menu;
+	ofImage skillMenu;
+	ofVec2f skillMenuPos;
 	Camera camera;
+	//vector<Button*> buttons;
 	vector <ofVec2f> wayPoints1;
 	vector <ofVec2f> wayPoints2;
 

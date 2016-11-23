@@ -43,6 +43,10 @@ void Animation::setFrameTime(float secs) {
 	frameTime = secs;
 }
 
+void Animation::setFrame(int num){
+	frame = num;
+}
+
 ofVec2f Animation::getFrameSize() const {
 	return ofVec2f(images[0]->getWidth(), images[0]->getHeight());
 }

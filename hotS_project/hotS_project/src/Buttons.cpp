@@ -1,10 +1,10 @@
 #include "Buttons.h"
 
-Button::Button(const ofVec2f& pos, string clicked, string notClicked) {
-	position = pos;
+Button::Button(const ofVec2f& pos, string clicked, string notClicked) 
+	: position(pos) {
 	colorNotClicked.load(notClicked);
 	colorClicked.load(clicked);
-	//this->sound.load(sound);
+	sound.load("audio/button.ogg");
 	IsClicked = false;
 	ClickFinished = false;
 }
@@ -16,6 +16,7 @@ const bool Button::Check(const ofVec2f& posMouse) const {//checa colisão do mous
 }
 bool Button::SetClick() {
 	IsClicked = true;
+	sound.play();
 	return IsClicked;
 }
 
@@ -26,17 +27,17 @@ void Button::Update(float secs) {
 		if (clickTime > 0.6) {
 			IsClicked = false;
 			ClickFinished = true;
-			//sound.stop();
+			sound.stop();
 		}
 	}
 }
 
-void Button::Draw() const {
+void Button::Draw(const ofVec2f& hero, const ofVec2f& camera) const {
 	if (!IsClicked) {
-		colorClicked.draw(position.x, position.y);
+		colorClicked.draw(position - camera);
 	}
 	else {
-		colorNotClicked.draw(position.x, position.y);
+		colorNotClicked.draw(position - camera);
 	}
 }
 
