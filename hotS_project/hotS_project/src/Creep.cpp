@@ -34,7 +34,7 @@ void Creep::collidedWith(GameObject* other) {
 	if (!alive) return;
 	Orb* orb = dynamic_cast<Orb*>(other);
 	if (orb != nullptr) {
-		life -= orb->getDemage() * ofGetLastFrameTime();
+		life -= orb->getDemage();
 	}
 }
 
