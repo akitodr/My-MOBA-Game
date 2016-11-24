@@ -24,6 +24,7 @@ public:
     bool isClickFinished() const;
 	void Update(float secs);
 	void Draw(const ofVec2f& hero, const ofVec2f& camera) const;
+	ofVec2f GetPosition();
 	~Button();
 
 

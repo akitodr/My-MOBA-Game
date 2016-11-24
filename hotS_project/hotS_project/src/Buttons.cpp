@@ -45,6 +45,10 @@ bool Button::isClickFinished() const {
 	return ClickFinished;
 }
 
+ofVec2f Button::GetPosition() {
+	return position;
+}
+
 Button::~Button() {
 
 }

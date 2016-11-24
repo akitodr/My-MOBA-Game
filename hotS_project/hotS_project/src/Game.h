@@ -13,7 +13,7 @@ private:
 	ofImage skillMenu;
 	ofVec2f skillMenuPos;
 	Camera camera;
-	//vector<Button*> buttons;
+	vector<Button*> buttons;
 	vector <ofVec2f> wayPoints1;
 	vector <ofVec2f> wayPoints2;
 

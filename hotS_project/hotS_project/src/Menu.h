@@ -17,4 +17,5 @@ class Menu : public Screen {
 		void update(float secs);
 		void draw();
 		Screen* nextScreen();
+		virtual ~Menu();
 };

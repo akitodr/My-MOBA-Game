@@ -27,6 +27,7 @@ void Hero::init() {
 	orbCoolDown = 1000;
 }
 
+
 void Hero::update(float secs, const ofVec2f& camera) {
 	coolDown += secs;
 	orbCoolDown += secs;
@@ -62,12 +63,14 @@ void Hero::update(float secs, const ofVec2f& camera) {
 		break;
 	case WALKING:
 		speed = 200;
-		position += (direction * speed * secs);
-		float distance = (position - destination).length();
+		float distance = (position - destination).lengthSquared();
 
-		if (distance < 15) {
+		if (distance < pow(6, 2)) {
 			stop();
-			position = destination;
+			//position = destination;
+		}
+		else {
+			position += (direction * speed * secs);
 		}
 
 		if (ofGetMousePressed(OF_MOUSE_BUTTON_1) && !KEYS.isPressed('e') && !KEYS.isPressed('E')

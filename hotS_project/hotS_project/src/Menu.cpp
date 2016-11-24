@@ -49,3 +49,10 @@ void Menu::draw() {
 Screen* Menu::nextScreen() {
 	return next;
 }
+
+Menu::~Menu() {
+	for (Button* b : buttons) {
+		delete b;
+	}
+	buttons.clear();
+}
